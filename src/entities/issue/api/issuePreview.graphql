@@ -1,0 +1,18 @@
+fragment IssuePreviewFields on Issue {
+  id
+  number
+  title
+  url
+  state
+  createdAt
+  updatedAt
+
+  author {
+    login
+    avatarUrl
+  }
+
+  comments {
+    totalCount
+  }
+}

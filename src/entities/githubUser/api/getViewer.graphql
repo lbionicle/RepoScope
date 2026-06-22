@@ -1,0 +1,51 @@
+query GetViewer($repositoriesFirst: Int!) {
+  viewer {
+    id
+    login
+    name
+    bio
+    avatarUrl
+    url
+
+    followers {
+      totalCount
+    }
+
+    following {
+      totalCount
+    }
+
+    publicRepositories: repositories(
+      first: $repositoriesFirst
+      affiliations: [OWNER, COLLABORATOR, ORGANIZATION_MEMBER]
+      privacy: PUBLIC
+      orderBy: { field: UPDATED_AT, direction: DESC }
+    ) {
+      totalCount
+
+      nodes {
+        ...RepositoryPreviewFields
+      }
+    }
+
+    privateRepositories: repositories(
+      first: $repositoriesFirst
+      affiliations: [OWNER, COLLABORATOR, ORGANIZATION_MEMBER]
+      privacy: PRIVATE
+      orderBy: { field: UPDATED_AT, direction: DESC }
+    ) {
+      totalCount
+
+      nodes {
+        ...RepositoryPreviewFields
+      }
+    }
+  }
+
+  rateLimit {
+    limit
+    cost
+    remaining
+    resetAt
+  }
+}

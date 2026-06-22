@@ -1,0 +1,17 @@
+query GetRepository($owner: String!, $name: String!, $issuesFirst: Int!) {
+  repository(owner: $owner, name: $name) {
+    ...RepositoryDetailsFields
+
+    issues(
+      first: $issuesFirst
+      states: OPEN
+      orderBy: { field: UPDATED_AT, direction: DESC }
+    ) {
+      totalCount
+
+      nodes {
+        ...IssuePreviewFields
+      }
+    }
+  }
+}

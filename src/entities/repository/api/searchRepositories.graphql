@@ -1,0 +1,18 @@
+query SearchRepositories($query: String!, $first: Int!, $after: String) {
+  search(query: $query, type: REPOSITORY, first: $first, after: $after) {
+    repositoryCount
+
+    nodes {
+      __typename
+
+      ... on Repository {
+        ...RepositoryPreviewFields
+      }
+    }
+
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

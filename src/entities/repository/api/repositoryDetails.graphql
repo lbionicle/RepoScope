@@ -1,0 +1,39 @@
+fragment RepositoryDetailsFields on Repository {
+  id
+  name
+  nameWithOwner
+  description
+  url
+  visibility
+  isPrivate
+  isArchived
+  isFork
+  createdAt
+  updatedAt
+  pushedAt
+  stargazerCount
+  forkCount
+
+  watchers {
+    totalCount
+  }
+
+  primaryLanguage {
+    name
+    color
+  }
+
+  defaultBranchRef {
+    name
+  }
+
+  licenseInfo {
+    name
+    spdxId
+  }
+
+  owner {
+    login
+    avatarUrl
+  }
+}
